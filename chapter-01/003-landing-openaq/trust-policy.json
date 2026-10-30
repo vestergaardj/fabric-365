@@ -1,0 +1,18 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "Federated": "arn:aws:iam::<aws-account-id>:oidc-provider/sts.windows.net/<tenant-id>/"
+      },
+      "Action": "sts:AssumeRoleWithWebIdentity",
+      "Condition": {
+        "StringEquals": {
+          "sts.windows.net/<tenant-id>/:sub": "<service-principal-object-id>",
+          "sts.windows.net/<tenant-id>/:aud": "https://analysis.windows.net/powerbi/connector/AmazonS3"
+        }
+      }
+    }
+  ]
+}
