@@ -1,8 +1,9 @@
 # Parameters
-$tenantId    = "<your-tenant-id>"
-$workspaceId = "<workspace-id>"
-$vaultName   = "<your-vault-name>"
-$prefix      = "sg-fabric365"
+$tenantId       = "<your-tenant-id>"
+$subscriptionId = "<your-subscription-id>"  # the subscription that holds the vault
+$workspaceId    = "<workspace-id>"
+$vaultName      = "<your-vault-name>"
+$prefix         = "sg-fabric365"
 
 $roles = [ordered]@{
     admins   = @{ Workspace = "Admin";       Vault = "Key Vault Secrets Officer"
@@ -14,6 +15,7 @@ $roles = [ordered]@{
 }
 
 az login --tenant $tenantId
+az account set --subscription $subscriptionId
 $me = az ad signed-in-user show --query id -o tsv
 
 $groupIds = @{}
